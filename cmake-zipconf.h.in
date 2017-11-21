@@ -118,4 +118,10 @@ typedef unsigned long long zip_uint64_t;
 #define ZIP_INT64_MAX	 0x7fffffffffffffffLL
 #define ZIP_UINT64_MAX	 0xffffffffffffffffULL
 
+#cmakedefine ZIP_EXTERN_OVERRIDE
+#ifdef ZIP_EXTERN_OVERRIDE
+#undef ZIP_EXTERN
+#cmakedefine ZIP_EXTERN
+#endif
+
 #endif /* zipconf.h */
