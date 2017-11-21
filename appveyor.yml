@@ -14,6 +14,8 @@ build_script:
 
     echo updated
 
+    echo D | xcopy C:\projects\libzip-1\* C:\Tools\vcpkg\buildtrees\libzip\
+
     vcpkg install libzip
 on_failure:
 - cmd: >-
