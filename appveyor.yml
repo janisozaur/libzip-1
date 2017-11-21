@@ -14,7 +14,7 @@ build_script:
 
     echo updated
 
-    vcpkg install libzip:x86-uwp
+    vcpkg install libzip
 on_failure:
 - cmd: >-
     type C:\Tools\vcpkg\buildtrees\libzip\install-x86-uwp-rel-out.log
