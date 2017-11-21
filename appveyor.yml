@@ -1,0 +1,15 @@
+version: 1.0.{build}
+image: Visual Studio 2017
+build_script:
+- cmd: >-
+    vcpkg update
+    cd C:\Tools\vcpkg
+    git pull
+    .\bootstrap-vcpkg.bat
+    .\vcpkg integrate install
+    echo updated
+    vcpkg install libzip:x86-uwp
+on_failure:
+- cmd: >-
+    type C:\Tools\vcpkg\buildtrees\libzip\install-x86-uwp-rel-out.log
+    type C:\Tools\vcpkg\buildtrees\libzip\install-x86-uwp-rel-err.log
