@@ -21,6 +21,6 @@ build_script:
     vcpkg install libzip
 on_failure:
 - cmd: >-
-    type C:\Tools\vcpkg\buildtrees\libzip\install-x86-uwp-rel-out.log
+    type C:\Tools\vcpkg\buildtrees\libzip\install-x86-windows-rel-out.log
 
-    type C:\Tools\vcpkg\buildtrees\libzip\install-x86-uwp-rel-err.log
+    type C:\Tools\vcpkg\buildtrees\libzip\install-x86-windows-rel-err.log
