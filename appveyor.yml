@@ -50,7 +50,7 @@ before_build:
 
     cd ..
 
-    xcopy vcpkg\downloads\*.zip C:\cache
+    xcopy vcpkg\downloads\*.zip C:\cache /Y /I /F
 
     mkdir build
 
