@@ -5,33 +5,31 @@ environment:
     - GENERATOR: "Visual Studio 15 2017 Win64"
       TRIPLET: x64-windows
       CMAKE_OPTS: "-DBUILD_SHARED_LIBS=off"
+      TESTS: ON
     - GENERATOR: "Visual Studio 15 2017"
       TRIPLET: x86-windows
       CMAKE_OPTS: "-DBUILD_SHARED_LIBS=off"
-    - GENERATOR: "Visual Studio 15 2017 Win64"
-      TRIPLET: x64-windows-static
-      CMAKE_OPTS:
-    - GENERATOR: "Visual Studio 15 2017"
-      TRIPLET: x86-windows-static
-      CMAKE_OPTS:
+      TESTS: ON
     - GENERATOR: "Visual Studio 15 2017 ARM"
       TRIPLET: arm-windows
-      CMAKE_OPTS:
+      CMAKE_OPTS: "-DUSE_OPENSSL=off"
     - GENERATOR: "Visual Studio 15 2017"
       TRIPLET: x86-uwp
       CMAKE_OPTS: "-DCMAKE_SYSTEM_NAME=WindowsStore"
+      TESTS: ON
     - GENERATOR: "Visual Studio 15 2017 Win64"
       TRIPLET: x64-uwp
       CMAKE_OPTS: "-DCMAKE_SYSTEM_NAME=WindowsStore"
+      TESTS: ON
     - GENERATOR: "Visual Studio 15 2017 ARM"
       TRIPLET: arm-uwp
-      CMAKE_OPTS: "-DCMAKE_SYSTEM_NAME=WindowsStore"
+      CMAKE_OPTS: "-DCMAKE_SYSTEM_NAME=WindowsStore -DUSE_OPENSSL=off"
     - GENERATOR: "Visual Studio 15 2017"
       TRIPLET: arm64-windows
-      CMAKE_OPTS: "-AARM64"
+      CMAKE_OPTS: "-AARM64 -DUSE_OPENSSL=off"
     - GENERATOR: "Visual Studio 15 2017"
       TRIPLET: arm64-uwp
-      CMAKE_OPTS: "-AARM64 -DCMAKE_SYSTEM_NAME=WindowsStore"
+      CMAKE_OPTS: "-AARM64 -DCMAKE_SYSTEM_NAME=WindowsStore -DUSE_OPENSSL=off"
 before_build:
   cmd: >-
     git clone https://github.com/Microsoft/vcpkg
@@ -61,3 +59,11 @@ build_script:
     cmake --build . --config Release --target INSTALL
 
     cmake --build . --config Debug --target INSTALL
+
+test_script:
+  cmd: >-
+    if %TESTS%=="ON" (
+      
+      ctest
+      
+    )
