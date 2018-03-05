@@ -68,4 +68,4 @@ build_script:
 
 test_script:
   cmd: >-
-    ctest
+    ctest --output-on-failure
