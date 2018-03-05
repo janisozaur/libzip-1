@@ -38,7 +38,7 @@ before_build:
 
     git clone https://github.com/Microsoft/vcpkg
 
-    xcopy C:\cache\* vcpkg\downloads
+    xcopy C:\cache\* vcpkg\downloads /Y /I /F
 
     cd vcpkg
 
