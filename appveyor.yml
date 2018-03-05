@@ -38,7 +38,7 @@ before_build:
 
     git clone https://github.com/Microsoft/vcpkg
 
-    robocopy /x /v /s C:/cache vcpkg/downloads
+    xcopy C:\cache\* vcpkg\downloads
 
     cd vcpkg
 
@@ -50,7 +50,7 @@ before_build:
 
     cd ..
 
-    robocopy /x /v vcpkg/downloads C:/cache *.zip
+    xcopy vcpkg\downloads\*.zip C:\cache
 
     mkdir build
 
