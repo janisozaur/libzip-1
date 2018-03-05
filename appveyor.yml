@@ -1,5 +1,37 @@
 os:
 - Visual Studio 2017
+environment:
+  matrix:
+    - GENERATOR: "Visual Studio 15 2017 Win64"
+      TRIPLET: x64-windows
+      CMAKE_OPTS: "-DBUILD_SHARED_LIBS=off"
+    - GENERATOR: "Visual Studio 15 2017"
+      TRIPLET: x86-windows
+      CMAKE_OPTS: "-DBUILD_SHARED_LIBS=off"
+    - GENERATOR: "Visual Studio 15 2017 Win64"
+      TRIPLET: x64-windows-static
+      CMAKE_OPTS:
+    - GENERATOR: "Visual Studio 15 2017"
+      TRIPLET: x86-windows-static
+      CMAKE_OPTS:
+    - GENERATOR: "Visual Studio 15 2017 ARM"
+      TRIPLET: arm-windows
+      CMAKE_OPTS:
+    - GENERATOR: "Visual Studio 15 2017"
+      TRIPLET: x86-uwp
+      CMAKE_OPTS: "-DCMAKE_SYSTEM_NAME=WindowsStore"
+    - GENERATOR: "Visual Studio 15 2017 Win64"
+      TRIPLET: x64-uwp
+      CMAKE_OPTS: "-DCMAKE_SYSTEM_NAME=WindowsStore"
+    - GENERATOR: "Visual Studio 15 2017 ARM"
+      TRIPLET: arm-uwp
+      CMAKE_OPTS: "-DCMAKE_SYSTEM_NAME=WindowsStore"
+    - GENERATOR: "Visual Studio 15 2017"
+      TRIPLET: arm64-windows
+      CMAKE_OPTS: "-AARM64"
+    - GENERATOR: "Visual Studio 15 2017"
+      TRIPLET: arm64-uwp
+      CMAKE_OPTS: "-AARM64 -DCMAKE_SYSTEM_NAME=WindowsStore"
 before_build:
   cmd: >-
     git clone https://github.com/Microsoft/vcpkg
@@ -10,7 +42,7 @@ before_build:
     
     .\vcpkg integrate install
     
-    .\vcpkg install zlib:x64-windows bzip2:x64-windows
+    .\vcpkg install zlib:%TRIPLET% bzip2:%TRIPLET%
     
     cd ..
 
@@ -18,7 +50,7 @@ before_build:
 
     cd build
 
-    cmake -DCMAKE_TOOLCHAIN_FILE=%cd%/../vcpkg/scripts/buildsystems/vcpkg.cmake .. -G"Visual Studio 15 2017 Win64"
+    cmake -DCMAKE_TOOLCHAIN_FILE=%cd%/../vcpkg/scripts/buildsystems/vcpkg.cmake .. -G %GENERATOR% %CMAKE_OPTS%
     
     appveyor PushArtifact config.h
 
