@@ -34,7 +34,7 @@ cache:
   - C:\cache
 before_build:
   cmd: >-
-    mkdir C:\cache
+    if NOT EXIST C:\cache ( mkdir C:\cache )
 
     git clone https://github.com/Microsoft/vcpkg
 
