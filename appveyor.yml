@@ -34,9 +34,11 @@ cache:
   - C:\cache
 before_build:
   cmd: >-
+    md C:/cache
+
     git clone https://github.com/Microsoft/vcpkg
 
-    robocopy /s C:/cache vcpkg/downloads
+    robocopy /x /v /s C:/cache vcpkg/downloads
 
     cd vcpkg
 
@@ -48,7 +50,7 @@ before_build:
 
     cd ..
 
-    robocopy /s vcpkg/downloads C:/cache
+    robocopy /x /v /s vcpkg/downloads C:/cache
 
     mkdir build
 
