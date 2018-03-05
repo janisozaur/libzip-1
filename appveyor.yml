@@ -62,8 +62,4 @@ build_script:
 
 test_script:
   cmd: >-
-    if %TESTS%=="ON" (
-      
-      ctest
-      
-    )
+    ctest
