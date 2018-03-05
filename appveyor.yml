@@ -50,7 +50,7 @@ before_build:
 
     cd ..
 
-    robocopy /x /v /s vcpkg/downloads C:/cache *.zip
+    robocopy /x /v vcpkg/downloads C:/cache *.zip
 
     mkdir build
 
