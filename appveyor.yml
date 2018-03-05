@@ -22,6 +22,8 @@ before_build:
     
     appveyor PushArtifact config.h
 
+    appveyor PushArtifact CMakeCache.txt
+
 build_script:
   cmd: >-
     cmake --build . --config Release --target INSTALL
