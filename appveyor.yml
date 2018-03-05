@@ -4,7 +4,7 @@ before_build:
   cmd: >-
     git clone https://github.com/Microsoft/vcpkg
     
-    pushd vcpkg
+    cd vcpkg
     
     .\bootstrap-vcpkg.bat
     
@@ -12,7 +12,7 @@ before_build:
     
     .\vcpkg install zlib:x64-windows
     
-    popd
+    cd ..
 
     mkdir build
 
