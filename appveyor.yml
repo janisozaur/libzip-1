@@ -30,26 +30,32 @@ environment:
     - GENERATOR: "Visual Studio 15 2017"
       TRIPLET: arm64-uwp
       CMAKE_OPTS: "-AARM64 -DCMAKE_SYSTEM_NAME=WindowsStore -DUSE_OPENSSL=off"
+cache:
+  - C:\cache
 before_build:
   cmd: >-
     git clone https://github.com/Microsoft/vcpkg
-    
+
+    robocopy /s C:/cache vcpkg/downloads
+
     cd vcpkg
-    
+
     .\bootstrap-vcpkg.bat
-    
+
     .\vcpkg integrate install
-    
+
     .\vcpkg install zlib:%TRIPLET% bzip2:%TRIPLET%
-    
+
     cd ..
+
+    robocopy /s vcpkg/downloads C:/cache
 
     mkdir build
 
     cd build
 
     cmake -DCMAKE_TOOLCHAIN_FILE=%cd%/../vcpkg/scripts/buildsystems/vcpkg.cmake .. -G "%GENERATOR%" %CMAKE_OPTS%
-    
+
     appveyor PushArtifact config.h
 
     appveyor PushArtifact CMakeCache.txt
