@@ -2,6 +2,8 @@ os:
 - Visual Studio 2017
 before_build:
   cmd: >-
+    vcpkg install zlib:x64-windows
+
     mkdir build
 
     cd build
