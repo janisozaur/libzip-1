@@ -67,7 +67,3 @@ build_script:
     cmake --build . --config Release --target INSTALL
 
     cmake --build . --config Debug --target INSTALL
-
-test_script:
-  cmd: >-
-    ctest --output-on-failure
