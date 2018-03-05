@@ -50,7 +50,7 @@ before_build:
 
     cd build
 
-    cmake -DCMAKE_TOOLCHAIN_FILE=%cd%/../vcpkg/scripts/buildsystems/vcpkg.cmake .. -G %GENERATOR% %CMAKE_OPTS%
+    cmake -DCMAKE_TOOLCHAIN_FILE=%cd%/../vcpkg/scripts/buildsystems/vcpkg.cmake .. -G "%GENERATOR%" %CMAKE_OPTS%
     
     appveyor PushArtifact config.h
 
