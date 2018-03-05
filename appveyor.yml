@@ -10,7 +10,7 @@ before_build:
     
     .\vcpkg integrate install
     
-    .\vcpkg install zlib:x64-windows
+    .\vcpkg install zlib:x64-windows bzip2:x64-windows
     
     cd ..
 
@@ -20,5 +20,8 @@ before_build:
 
     cmake -DCMAKE_TOOLCHAIN_FILE=%cd%/../vcpkg/scripts/buildsystems/vcpkg.cmake .. -G"Visual Studio 15 2017 Win64"
 
-#build_script:
-#  cmake --build . --config Release --target INSTALL
+build_script:
+  cmd: >-
+    cmake --build . --config Release --target INSTALL
+
+    cmake --build . --config Debug --target INSTALL
